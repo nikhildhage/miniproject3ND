@@ -54,6 +54,22 @@ def register():
     return render_template('register.html')
 
 
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    saved_locations = db.get_db("SELECT * FROM saved_locations WHERE user_id=?", (session['user_id'],))
+    return render_template('profile.html', saved_locations=saved_locations)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You are now logged out', 'Info')
+    return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
