@@ -21,6 +21,6 @@ To start the Flask development server, please type the following commands:
 
 For **Windows**:
 
-\```
+```
 flask --app app run
-\```
+```
