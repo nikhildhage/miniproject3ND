@@ -1,0 +1,82 @@
+/* custom.css */
+
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Navigation styles */
+.navbar {
+    background-color: #333;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    color: #fff !important;
+}
+
+/* Weather styles */
+.weather-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.weather-data {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.city-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.temperature {
+    font-size: 48px;
+}
+
+.description {
+    font-style: italic;
+}
+
+/* Profile styles */
+.saved-locations {
+    list-style-type: none;
+    padding: 0;
+}
+
+.saved-locations li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Login & Register styles */
+.login-box,
+.register-box {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2,
+.register-box h2 {
+    text-align: center;
+}
+
+.login-button,
+.register-button {
+    width: 100%;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
