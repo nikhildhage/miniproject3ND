@@ -15,3 +15,12 @@ Please run the following
 ```
 pip install -r requirements.txt
 ```
+
+### How to Run
+To start the Flask development server, please type the following commands:
+
+For **Windows**:
+
+\```
+flask --app app run
+\```
