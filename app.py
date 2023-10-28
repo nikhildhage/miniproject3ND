@@ -4,6 +4,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3, db, requests, os
+from geopy.geocoders import Nominatim
 from dotenv import load_dotenv
 
 
@@ -13,8 +14,14 @@ def configure():
 
 configure()
 
+# Initialize the geolocator
+geolocator = Nominatim(user_agent="weather_app")
+
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
+
+# OpenWeatherMap API Configurations
+API_URL = f"http://api.openweathermap.org/data/2.5/forecast/daily?zip=zip_code,us&appid=os.getenv('API_KEY')"
 
 # Initialize the Database with the SQL Schema
 db.init_db()
@@ -52,6 +59,32 @@ def register():
         except sqlite3.IntegrityError:
             flash('Username already exists!')
     return render_template('register.html')
+
+
+#TODO: Weather details(City Name, Current Temperature, Weather Condition, Day & Night Temperature), Figure out how to get current day and increment for weather cards
+#TODO: Implement api request with zip code
+
+
+@app.route('/weather', methods=['GET', 'POST'])
+def weather():
+    weather_data = None
+    error = None
+
+    if request.method == 'POST':
+        zip_code = request.form.get('zip_code')
+        cnt = 6  # for current day + next 5 days
+        response = requests.get(f"https://api.openweathermap.org/data/2.5/forecast/daily?zip=" + zip_code + ",us&cnt=" + str(cnt) + "&appid=os.getenv('API_KEY')")
+        print(response)
+
+        if response.status_code == 200:
+            weather_data = response.json()
+            # Check if the response contains an error message
+            if 'message' in weather_data and weather_data['cod'] != '200':
+                error = weather_data['message']
+        else:
+            error = "Error fetching the weather data. Please try again later."
+
+    return render_template('weather.html', weather_data=weather_data, error=error)
 
 
 @app.route('/profile')
