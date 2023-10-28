@@ -1,26 +1,88 @@
-/* custom.css */
-
 /* Global styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    margin-top: 50px;
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation styles */
-.navbar {
-    background-color: #333;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.navbar-brand,
-.navbar-nav li a {
-    color: #fff !important;
+/* Navigation */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-/* Weather styles */
+.btn, .btn-nav {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-nav {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover, .btn-nav:hover {
+    background-color: #0056b3;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+}
+
+/* Error Messages */
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Weather Card Styles */
+.weather-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#fiveDayForecast .weather-card:not(:last-child) {
+    margin-bottom: 20px;
+}
+
 .weather-icon {
     width: 100px;
     height: 100px;
@@ -42,6 +104,22 @@ body {
 
 .description {
     font-style: italic;
+}
+
+/* Toggle Button */
+#toggleButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#toggleButton:hover {
+    background-color: #0056b3;
 }
 
 /* Profile styles */
@@ -80,3 +158,4 @@ body {
     color: red;
     font-weight: bold;
 }
+

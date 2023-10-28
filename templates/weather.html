@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+
+        <!-- Navigation buttons -->
+        <div class="nav-buttons">
+            <a href="{{ url_for('profile') }}" class="btn">Profile</a>
+            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        </div>
+
+        <form action="{{ url_for('weather') }}" method="post">
+            <input type="text" name="zip_code" placeholder="Enter Zip Code" required>
+            <button type="submit">Show Me The Weather!</button>
+        </form>
+
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        {% if weather_data %}
+            <div class="weather-card">
+                <h2>{{ weather_data.city.name }}</h2>
+                <p>Current Temperature: {{ weather_data.list[0].temp.day }}°C</p>
+                <p>Weather Condition: {{ weather_data.list[0].weather[0].description }}</p>
+                <p>Day Temperature: {{ weather_data.list[0].temp.day }}°C</p>
+                <p>Night Temperature: {{ weather_data.list[0].temp.night }}°C</p>
+            </div>
+
+            <button id="toggleButton">Show 5-day forecast</button>
+
+            <div id="fiveDayForecast" style="display: none;">
+                {% for day in weather_data.list[1:6] %}
+                    <div class="weather-card">
+                        <h2>{{ weather_data.city.name }}</h2>
+                        <p>Current Temperature: {{ day.temp.day }}°C</p>
+                        <p>Weather Condition: {{ day.weather[0].description }}</p>
+                        <p>Day Temperature: {{ day.temp.day }}°C</p>
+                        <p>Night Temperature: {{ day.temp.night }}°C</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById("toggleButton").addEventListener("click", function() {
+            const forecastDiv = document.getElementById("fiveDayForecast");
+            if (forecastDiv.style.display === "none") {
+                forecastDiv.style.display = "block";
+            } else {
+                forecastDiv.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
+
+{% endblock %}

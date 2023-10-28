@@ -1,6 +1,78 @@
 {% extends 'base.html' %}
+
 {% block content %}
     <h1>Welcome to the Weather App</h1>
     <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
     <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+
+    <!-- Container from index2.html -->
+    <div id="wrapper" class="container-fluid d-flex align-items-center justify-content-center">
+
+        <!-- Main page content from index2.html -->
+        <div id="main" class="container">
+            <section class="section-1">
+                <!-- Heading -->
+                <div class="heading">
+                    <h1>Welcome</h1>
+                </div>
+                <br />
+                <!-- Login Button -->
+                <div class="login-btn">
+                    <a href="#" class="btn btn-primary">Login</a>
+                </div>
+            </section>
+            <!-- Card Group -->
+            <div class="card-group d-flex shadow-lg text-center">
+                <div class="card shadow-lg" id="card-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                        <!-- Font Awesome Pro 6.4.2 -->
+                        <path d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"/>
+                    </svg>
+                    <div class="card-body">
+                        <div class="loc-details">
+                            <h2 class="card-title">Piscataway</h2>
+                            <p class="card-text">Location time</p>
+                        </div>
+                        <div class="weather-details">
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        <div class="weather status">
+                            <p>partly cloudy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-lg" id="card-2">
+                    <h2><i class="fa-light fa-cloud fa-sm" style="color: #bac2ce"></i></h2>
+                    <div class="card-body">
+                        <div class="row">
+                            <h2 class="card-title">Piscataway</h2>
+                            <p class="card-text">Location time</p>
+                            <div class="weather-details">
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                            <div class="weather status">
+                                <p>partly cloudy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-lg" id="card-3">
+                    <h2><i class="fa-light fa-cloud fa-sm" style="color: #bac2ce"></i></h2>
+                    <div class="card-body">
+                        <div class="row">
+                            <h2 class="card-title">Piscataway</h2>
+                            <p class="card-text">Location time</p>
+                            <div class="weather-details">
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                            <div class="weather status">
+                                <p>partly cloudy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
