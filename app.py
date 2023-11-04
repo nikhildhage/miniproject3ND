@@ -32,6 +32,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/home')
+def home():
+    return render_template('index.html')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -83,7 +88,6 @@ def weather():
                 error = weather_data['message']
         else:
             error = "Error fetching the weather data. Please try again later."
-
     return render_template('weather.html', weather_data=weather_data, error=error)
 
 
@@ -105,4 +109,3 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
