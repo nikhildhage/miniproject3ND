@@ -1,71 +1,181 @@
 {% extends "base.html" %}
-
+{% block head %}
+    <!--Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename="css/weather.css")}}">
+{% endblock %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Weather App</h1>
-
-        <!-- Navigation buttons -->
-        <div class="nav-buttons">
-            <a href="{{ url_for('profile') }}" class="btn">Profile</a>
-            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
-        </div>
-
-        <form action="{{ url_for('weather') }}" method="post">
-            <input type="text" name="zip_code" placeholder="Enter Zip Code" required>
-            <button type="submit">Show Me The Weather!</button>
-        </form>
-
-        {% if error %}
-            <div class="error">
-                <p>{{ error }}</p>
-            </div>
-        {% endif %}
-
-        {% if weather_data %}
-            <div class="weather-card">
-                <h2>{{ weather_data.city.name }}</h2>
-                <p>Current Temperature: {{ weather_data.list[0].temp.day }}°C</p>
-                <p>Weather Condition: {{ weather_data.list[0].weather[0].description }}</p>
-                <p>Day Temperature: {{ weather_data.list[0].temp.day }}°C</p>
-                <p>Night Temperature: {{ weather_data.list[0].temp.night }}°C</p>
-            </div>
-
-            <button id="toggleButton">Show 5-day forecast</button>
-
-            <div id="fiveDayForecast" style="display: none;">
-                {% for day in weather_data.list[1:6] %}
-                    <div class="weather-card">
-                        <h2>{{ weather_data.city.name }}</h2>
-                        <p>Current Temperature: {{ day.temp.day }}°C</p>
-                        <p>Weather Condition: {{ day.weather[0].description }}</p>
-                        <p>Day Temperature: {{ day.temp.day }}°C</p>
-                        <p>Night Temperature: {{ day.temp.night }}°C</p>
+     <section class="section-1">
+          <!--Heading-->
+          <div class="heading">
+            <h2>Today's Forecast</h2>
+          </div>
+          <br />
+          <!--Login Button-->
+          <div class="search-btn">
+            <a href="{{url_for('login')}}" class="btn btn-primary">search</a>
+          </div>
+          <br />
+        </section>
+        <!-- Card Group--->
+        <div class="card-group shadow-lg text-center">
+            <div class="card shadow-lg" id="card-1">
+                <div class="card-body">
+                    <div class="city">
+                        <!-- Location details-->
+                        <h1 class="card-title">Piscataway</h1>
                     </div>
-                {% endfor %}
+                    <!-- Weather details-->
+                    <div class="wether-details">
+                        <!--  Current Temperture-->
+                        <p class="temp">52</p>
+                    </div>
+                    <div class="weather-condition">
+                        <!--Weather condition-->
+                        <p>partly cloudy</p>
+                    </div>
+                    <div class="card-footer">
+                        <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="332"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-star"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                  />
+                </svg>
+                    </div>
+                </div>
             </div>
-        {% endif %}
-    </div>
-
-    <script>
-        document.getElementById("toggleButton").addEventListener("click", function() {
-            const forecastDiv = document.getElementById("fiveDayForecast");
-            if (forecastDiv.style.display === "none") {
-                forecastDiv.style.display = "block";
-            } else {
-                forecastDiv.style.display = "none";
-            }
-        });
-    </script>
-</body>
-</html>
-
+            <br>
+            <div class="card shadow-lg" id="card-2">
+                <div class="card-body">
+                    <div class="city">
+                        <!-- Location details-->
+                        <h1 class="card-title">Piscataway</h1>
+                    </div>
+                    <!-- Weather details-->
+                    <div class="wether-details">
+                        <!--  Current Temperture-->
+                        <p class="temp">52</p>
+                    </div>
+                    <div class="weather-condition">
+                        <!--Weather condition-->
+                        <p>partly cloudy</p>
+                    </div>
+                    <div class="card-footer">
+                        <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="332"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-star"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                  />
+                </svg>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow-lg" id="card-3">
+                <div class="card-body">
+                    <div class="city">
+                        <!-- Location details-->
+                        <h1 class="card-title">Piscataway</h1>
+                    </div>
+                    <!-- Weather details-->
+                    <div class="wether-details">
+                        <!--  Current Temperture-->
+                        <p class="temp">52</p>
+                    </div>
+                    <div class="weather-condition">
+                        <!--Weather condition-->
+                        <p>partly cloudy</p>
+                    </div>
+                    <div class="card-footer">
+                        <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="332"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-star"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                  />
+                </svg>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow-lg" id="card-4">
+                <div class="card-body">
+                    <div class="city">
+                        <!-- Location details-->
+                        <h1 class="card-title">Piscataway</h1>
+                    </div>
+                    <!-- Weather details-->
+                    <div class="wether-details">
+                        <!--  Current Temperture-->
+                        <p class="temp">52</p>
+                    </div>
+                    <div class="weather-condition">
+                        <!--Weather condition-->
+                        <p>partly cloudy</p>
+                    </div>
+                    <div class="card-footer">
+                        <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="332"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-star"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                  />
+                </svg>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow-lg" id="card-5">
+                <div class="card-body">
+                    <div class="city">
+                        <!-- Location details-->
+                        <h1 class="card-title">Piscataway</h1>
+                    </div>
+                    <!-- Weather details-->
+                    <div class="wether-details">
+                        <!--  Current Temperture-->
+                        <p class="temp">52</p>
+                    </div>
+                    <div class="weather-condition">
+                        <!--Weather condition-->
+                        <p>partly cloudy</p>
+                    </div>
+                    <div class="card-footer">
+                        <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="332"
+                  height="32"
+                  fill="currentColor"
+                  class="bi bi-star"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+                  />
+                </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
