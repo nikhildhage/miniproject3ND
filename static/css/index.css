@@ -22,7 +22,7 @@ body {
 #nav {
   margin: 0;
   padding: 20px;
-  font-size: 4em;
+  font-size: 3em;
   font-weight: 600;
   background-color: transparent !important;
 }
@@ -43,6 +43,12 @@ body {
   padding: 20px;
   /*background-color:coral*/
   position: relative;
+}
+
+.modal{
+  display: block;
+  color:black;
+  text-align: center;
 }
 
 .section-1 {
@@ -72,11 +78,11 @@ body {
   text-align: center;
   background-color: rgb(229, 76, 76);
   border: 1px solid;
-  border-radius: 0, 3, 15px;
+  border-radius: 15px 15px 15px 15px;
 }
 
 .card-group {
-  width: 80%;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -91,8 +97,8 @@ body {
 .card {
   text-align: center;
   color: whitesmoke;
-  max-width: auto;
-  min-height: auto;
+  max-width: 100%;
+  min-height: 200px;
   margin: 20px;
   position: relative;
   background-image: url("https://t3.ftcdn.net/jpg/01/02/64/28/360_F_102642850_Mca9lTRDH60DQin39YwCF5Jzd15lcdoo.jpg");

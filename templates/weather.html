@@ -6,11 +6,12 @@
 {% block content %}
      <section class="section-1">
          <!--Search Bar-->
-         <form action="{{ url_for('weather') }}" id="locForm" class="form locForm" method="POST">
+         <form action="#" id="locForm" class="form locForm" method="POST">
              <div class="form-group locFormGroup d-flex">
                  <label for="zipCodeInput" id="zipCodeLabel">ZipCode</label>
-                 <input type="text" class="form-control" id="zipCodeInput" placeholder="Enter ZipoCode">
-                 <button class="btn btn-primary search-btn">Search</button>
+                 <input type="text" class="form-control" id="zipCodeInput" name="zipCodeInput"
+                        placeholder="Enter ZipoCode">
+                 <button type="submit" class="btn btn-primary search-btn">Search</button>
              </div>
          </form>
          <br>
@@ -20,14 +21,19 @@
           </div>
           <br />
           <br />
-        </section>
+     </section>
+    {% if error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
     <!--Card Group for Today's weather -->
     <div id="t-weather " class="card-group shadow-lg text-center">
         <div class="card shadow-lg" id="t-weather-card">
             <div class="card-body">
                 <div class="city">
                     <!-- Location details-->
-                    <h1 class="card-title">Piscataway</h1>
+                    <h1 class="card-title">{{ city_name }}</h1>
                 </div>
                 <!-- Weather details-->
                 <div class="wether-details">
@@ -63,7 +69,7 @@
                 <div class="card-body">
                     <div class="city">
                         <!-- Location details-->
-                        <h1 class="card-title">Piscataway</h1>
+                        <h1 class="card-title">{{ city_name }}</h1>
                     </div>
                     <!-- Weather details-->
                     <div class="wether-details">
@@ -95,7 +101,7 @@
                 <div class="card-body">
                     <div class="city">
                         <!-- Location details-->
-                        <h1 class="card-title">Piscataway</h1>
+                        <h1 class="card-title">{{ city_name }}</h1>
                     </div>
                     <!-- Weather details-->
                     <div class="wether-details">
@@ -127,7 +133,7 @@
                 <div class="card-body">
                     <div class="city">
                         <!-- Location details-->
-                        <h1 class="card-title">Piscataway</h1>
+                        <h1 class="card-title">{{ city_name }}</h1>
                     </div>
                     <!-- Weather details-->
                     <div class="wether-details">
@@ -159,7 +165,7 @@
                 <div class="card-body">
                     <div class="city">
                         <!-- Location details-->
-                        <h1 class="card-title">Piscataway</h1>
+                        <h1 class="card-title">{{ city_name }}</h1>
                     </div>
                     <!-- Weather details-->
                     <div class="wether-details">
@@ -191,7 +197,7 @@
                 <div class="card-body">
                     <div class="city">
                         <!-- Location details-->
-                        <h1 class="card-title">Piscataway</h1>
+                        <h1 class="card-title">{{ city_name }}</h1>
                     </div>
                     <!-- Weather details-->
                     <div class="wether-details">
